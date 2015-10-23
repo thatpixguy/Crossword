@@ -4,6 +4,19 @@
 *
 */
 (function($){
+
+	function maintainAspect() {
+		var cells = $("#puzzle td");
+		var width = cells.width();
+		cells.find("input").css("font-size",width+"px");
+		cells.height(width);
+	}
+	
+	$(window).resize(maintainAspect);
+
+	/* this doesn't seem to do anything */
+	$(document).ready(maintainAspect);
+
 	$.fn.crossword = function(entryData) {
 			/*
 				Qurossword Puzzle: a javascript + jQuery crossword puzzle
