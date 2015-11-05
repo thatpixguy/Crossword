@@ -59,7 +59,7 @@
 					});
 
 					// Set keyup handlers for the 'entry' inputs that will be added presently
-					puzzEl.delegate('input', 'keyup', function(e){
+					puzzEl.delegate('input', 'input', function(e){
 						mode = 'interacting';
 						
 						
@@ -76,9 +76,24 @@
 							default:
 								break;
 						}
-						
+							
+						console.log('input keyup: '+solvedToggle);
+							
+						puzInit.checkAnswer(e);
+
+					});
+			
+					// tab navigation handler setup
+					puzzEl.delegate('input', 'keydown', function(e) {
+
 						if ( e.keyCode === 9) {
-							return false;
+							
+							mode = "setting ui";
+							if (solvedToggle) solvedToggle = false;
+
+							//puzInit.checkAnswer(e)
+							nav.updateByEntry(e);
+							
 						} else if (
 							e.keyCode === 37 ||
 							e.keyCode === 38 ||
@@ -97,29 +112,6 @@
 							
 							e.preventDefault();
 							return false;
-						} else {
-							
-							console.log('input keyup: '+solvedToggle);
-							
-							puzInit.checkAnswer(e);
-
-						}
-
-						e.preventDefault();
-						return false;					
-					});
-			
-					// tab navigation handler setup
-					puzzEl.delegate('input', 'keydown', function(e) {
-
-						if ( e.keyCode === 9) {
-							
-							mode = "setting ui";
-							if (solvedToggle) solvedToggle = false;
-
-							//puzInit.checkAnswer(e)
-							nav.updateByEntry(e);
-							
 						} else {
 							return true;
 						}
