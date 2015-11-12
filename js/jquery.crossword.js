@@ -75,20 +75,6 @@
 					puzzEl.delegate('input', 'input', function(e){
 						mode = 'interacting';
 						
-						
-						// need to figure out orientation up front, before we attempt to highlight an entry
-						switch(e.which) {
-							case 39:
-							case 37:
-								currOri = 'across';
-								break;
-							case 38:
-							case 40:
-								currOri = 'down';
-								break;
-							default:
-								break;
-						}
 							
 						console.log('input keyup: '+solvedToggle);
 							
@@ -128,8 +114,6 @@
 						} else {
 							return true;
 						}
-												
-						e.preventDefault();
 									
 					});
 					
