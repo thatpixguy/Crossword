@@ -243,7 +243,7 @@
 							if($(light).empty()){
 								$(light)
 									.addClass('entry-' + (hasOffset ? x - positionOffset : x) + ' position-' + (x-1) )
-									.append('<input maxlength="1" val="" type="text" tabindex="-1" />');
+									.append('<input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" maxlength="1" val="" type="text" tabindex="-1" />');
 							}
 						};
 						
