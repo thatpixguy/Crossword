@@ -38,8 +38,10 @@
 			
 			// append clues markup after puzzle wrapper div
 			// This should be moved into a configuration object
-			this.after('<div id="puzzle-clues-cryptic"><h2>Across</h2><ol id="across"></ol><h2>Down</h2><ol id="down"></ol></div>');
-			this.after('<div id="puzzle-clues-quick"><h2>Across</h2><ol id="across"></ol><h2>Down</h2><ol id="down"></ol></div>');
+			this.after(
+			  '<div id="puzzle-clues-cryptic"><h1>Cryptic</h1><h2>Across</h2><ol id="across"></ol><h2>Down</h2><ol id="down"></ol></div>'
+			  +'<div id="puzzle-clues-quick"><h1>Quick</h1><h2>Across</h2><ol id="across"></ol><h2>Down</h2><ol id="down"></ol></div>'
+			);
 			
 			// initialize some variables
 			var tbl = ['<table id="puzzle">'],
