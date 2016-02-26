@@ -502,15 +502,15 @@
 							}
 
 							if(e1Ori === currOri){
-								activePosition = classes[0].split('-')[1];		
+								activePosition = classes[0].split('-')[1];	
 							} else if(e2Ori === currOri){
 								activePosition = classes[1].split('-')[1];
 							}
 						} else {
-							activePosition = classes[0].split('-')[1];						
+							activePosition = classes[0].split('-')[1];					
 						}
 						
-						console.log('getActivePositionFromClassGroup activePosition: '+activePosition);
+						//console.log('getActivePositionFromClassGroup activePosition: '+activePosition);
 						
 				},
 				
