@@ -42,7 +42,7 @@
 			
 			// initialize some variables
 			var tbl = ['<table id="puzzle">'],
-			    puzzEl = this,
+				puzzEl = this,
 				clues = $('#puzzle-clues'),
 				clueLiEls,
 				coords,
@@ -76,22 +76,32 @@
 						mode = 'interacting';
 						
 							
-						console.log('input keyup: '+solvedToggle);
+						//console.log('input input: target='+ e.target.value +' solvedToggle='+solvedToggle);
 							
 						puzInit.checkAnswer(e);
 
 					});
-			
+					
+					puzzEl.delegate('input', 'keypress', function(e) {
+						//console.log('input keypress: which='+ e.which + ' charCode='+e.charCode+' key='+e.key+ ' keyIdentifier='+e.keyIdentifier);
+						return true;
+					});
+
 					// tab navigation handler setup
 					puzzEl.delegate('input', 'keydown', function(e) {
 
-						if ( e.keyCode === 9) {
+						console.log('input keydown: which='+ e.which + ' charCode='+e.charCode+' key='+e.key+ ' keyIdentifier='+e.keyIdentifier);
+
+						// tab / enter are treated specially
+						if ( e.keyCode === 9 || e.keyCode === 13 ) {
 							
 							mode = "setting ui";
 							if (solvedToggle) solvedToggle = false;
 
 							//puzInit.checkAnswer(e)
 							nav.updateByEntry(e);
+
+							e.preventDefault();
 							
 						} else if (
 							e.keyCode === 37 ||
@@ -99,9 +109,9 @@
 							e.keyCode === 39 ||
 							e.keyCode === 40 ||
 							e.keyCode === 8 ||
-							e.keyCode === 46 ) {			
-												
-
+							e.keyCode === 46 ) {
+							
+							
 							
 							if (e.keyCode === 8 || e.keyCode === 46) {
 								currOri === 'across' ? nav.nextPrevNav(e, 37) : nav.nextPrevNav(e, 38); 
@@ -112,6 +122,12 @@
 							e.preventDefault();
 							return false;
 						} else {
+							// hopefully this catches devices like android which output a dead keycode(229) and a null charCode here.
+							// this breaks i18n for scandanavian languages!
+							if(e.which>0 && e.which!=229) {
+								// on iOS we get the actual keycode here so lets use it
+								e.target.value = String.fromCharCode(e.which);
+							}
 							return true;
 						}
 									
@@ -122,7 +138,7 @@
 						mode = "setting ui";
 						if (solvedToggle) solvedToggle = false;
 
-						console.log('input click: '+solvedToggle);
+						//console.log('input click: '+solvedToggle);
 					
 						nav.updateByEntry(e);
 						e.preventDefault();
@@ -168,7 +184,7 @@
 					/*
 						Calculate all puzzle entry coordinates, put into entries array
 					*/
-					for (var i = 0, p = entryCount; i < p; ++i) {		
+					for (var i = 0, p = entryCount; i < p; ++i) {      
 						// set up array of coordinates for each problem
 						entries.push(i);
 						entries[i] = [];
@@ -181,7 +197,7 @@
 
 						// while we're in here, add clues to DOM!
 						$('#' + puzz.data[i].orientation).append('<li tabindex="1" data-position="' + i + '" value="' + puzz.data[i].position + '">' + puzz.data[i].clue + '</li>'); 
-					}				
+					}			  
 					
 					// Calculate rows/cols by finding max coords of each entry, then picking the highest
 					for (var i = 0, p = entryCount; i < p; ++i) {
@@ -206,7 +222,9 @@
 							for (var x=1; x <= cols; ++x) {
 								tbl.push('<td data-coords="' + x + ',' + i + '"></td>');		
 							};
-						tbl.push("</tr>");
+			tbl.push("</tr>");
+
+								  // don't advance if value has been deleted/tr>");
 					};
 
 					tbl.push("</table>");
@@ -247,7 +265,7 @@
 							}
 						};
 						
-					};	
+					};  
 					
 					// Put entry number in first 'light' of each entry, skipping it if already present
 					for (var i=1, p = entryCount; i < p; ++i) {
@@ -256,7 +274,7 @@
 							$groupedLights.eq(0)
 								.append('<span>' + puzz.data[i].position + '</span>');
 						}
-					}	
+					}   
 					
 					util.highlightEntry();
 					util.highlightClue();
@@ -280,7 +298,7 @@
 
 					currVal = $('.position-' + activePosition + ' input')
 						.map(function() {
-					  		return $(this)
+							return $(this)
 								.val()
 								.toLowerCase();
 						})
@@ -288,25 +306,34 @@
 						.join('');
 					
 					//console.log(currVal + " " + valToCheck);
-					if(valToCheck === currVal){	
+					if(valToCheck === currVal){ 
 						$('.active')
-							.addClass('done')
-							.removeClass('active');
-					
+							.addClass('done');
+							//.removeClass('active');
+						
 						$('.clues-active').addClass('clue-done');
-
+						
 						solved.push(valToCheck);
 						solvedToggle = true;
-						return;
+						// still advance
+						//return;
+					} else {
+						//remove done flags (inefficient?)
+						$('.active').removeClass('done');
+						$('.clues-active').removeClass('clue-done');
+						// what to do with solved / solveToggle? is it even used?
 					}
 					
-					currOri === 'across' ? nav.nextPrevNav(e, 39) : nav.nextPrevNav(e, 40);
+					// don't advance if value has been deleted      
+					if(e.target.value != "") {
+					  currOri === 'across' ? nav.nextPrevNav(e, 39) : nav.nextPrevNav(e, 40);
+					}
 					
 					//z++;
 					//console.log(z);
 					//console.log('checkAnswer() solvedToggle: '+solvedToggle);
 
-				}				
+				}
 
 
 			}; // end puzInit object
@@ -334,6 +361,7 @@
 					//console.log('nextPrevNav activePosition & struck: '+ activePosition + ' '+struck);
 						
 					// move input focus/select to 'next' input
+					
 					switch(struck) {
 						case 39:
 							p
@@ -407,7 +435,8 @@
 				updateByEntry: function(e, next) {
 					var classes, next, clue, e1Ori, e2Ori, e1Cell, e2Cell;
 					
-					if(e.keyCode === 9 || next){
+					// handle tab and enter specially
+					if(e.keyCode === 9 || e.keyCode === 13 || next){
 						// handle tabbing through problems, which keys off clues and requires different handling		
 						activeClueIndex = activeClueIndex === clueLiEls.length-1 ? 0 : ++activeClueIndex;
 					
@@ -437,7 +466,7 @@
 						util.highlightEntry();
 						util.highlightClue();
 						
-						//$actives.eq(0).addClass('current');	
+						//$actives.eq(0).addClass('current');   
 						//console.log('nav.updateByEntry() reports activePosition as: '+activePosition);	
 				}
 				
@@ -456,7 +485,7 @@
 				},
 				
 				highlightClue: function() {
-					var clue;				
+					var clue;			  
 					$('.clues-active').removeClass('clues-active');
 					$(clueLiEls + '[data-position=' + activePosition + ']').addClass('clues-active');
 					
@@ -526,7 +555,7 @@
 				getSkips: function(position) {
 					if ($(clueLiEls[position]).hasClass('clue-done')){
 						activeClueIndex = position === clueLiEls.length-1 ? 0 : ++activeClueIndex;
-						util.getSkips(activeClueIndex);						
+						util.getSkips(activeClueIndex);				  
 					} else {
 						return false;
 					}
