@@ -6,7 +6,8 @@
 		// two entries: an across entry and a down entry
 		var puzzleData = [
 			 	{
-					clue: "First letter of greek alphabet",
+					clueQuick: "First letter of greek alphabet",
+					clueCryptic: "First letter of greek alphabet",
 					answer: "alpha",
 					position: 1,
 					orientation: "across",
@@ -14,7 +15,8 @@
 					starty: 1
 				},
 			 	{
-					clue: "Not a one ___ motor, but a three ___ motor",
+					clueQuick: "Not a one ___ motor, but a three ___ motor",
+					clueCryptic: "Not a one ___ motor, but a three ___ motor",
 					answer: "phase",
 					position: 3,
 					orientation: "across",
@@ -22,7 +24,8 @@
 					starty: 1
 				},
 				{
-					clue: "Created from a separation of charge",
+					clueQuick: "Created from a separation of charge",
+					clueCryptic: "Created from a separation of charge",
 					answer: "capacitance",
 					position: 5,
 					orientation: "across",
@@ -30,7 +33,8 @@
 					starty: 3
 				},
 				{
-					clue: "The speeds of engines without and accelaration",
+					clueQuick: "The speeds of engines without and accelaration",
+					clueCryptic: "The speeds of engines without and accelaration",
 					answer: "idlespeeds",
 					position: 8,
 					orientation: "across",
@@ -38,7 +42,8 @@
 					starty: 5
 				},
 				{
-					clue: "Complex resistances",
+					clueQuick: "Complex resistances",
+					clueCryptic: "Complex resistances",
 					answer: "impedances",
 					position: 10,
 					orientation: "across",	
@@ -46,7 +51,8 @@
 					starty: 7
 				},
 				{
-					clue: "This device is used to step-up, step-down, and/or isolate",
+					clueQuick: "This device is used to step-up, step-down, and/or isolate",
+					clueCryptic: "This device is used to step-up, step-down, and/or isolate",
 					answer: "transformer",
 					position: 13,
 					orientation: "across",
@@ -54,7 +60,8 @@
 					starty: 9
 				},
 				{
-					clue: "Type of ray emitted frm the sun",
+					clueQuick: "Type of ray emitted frm the sun",
+					clueCryptic: "Type of ray emitted frm the sun",
 					answer: "gamma",
 					position: 16,
 					orientation: "across",
@@ -62,7 +69,8 @@
 					starty: 11
 				},
 				{
-					clue: "C programming language operator",
+					clueQuick: "C programming language operator",
+					clueCryptic: "C programming language operator",
 					answer: "cysan",
 					position: 17,
 					orientation: "across",
@@ -70,7 +78,8 @@
 					starty: 11
 				},
 				{
-					clue: "Defines the alpha-numeric characters that are typically associated with text used in programming",
+					clueQuick: "Defines the alpha-numeric characters that are typically associated with text used in programming",
+					clueCryptic: "Defines the alpha-numeric characters that are typically associated with text used in programming",
 					answer: "ascii",
 					position: 1,
 					orientation: "down",
@@ -78,7 +87,8 @@
 					starty: 1
 				},
 				{
-					clue: "Generally, if you go over 1kV per cm this happens",
+					clueQuick: "Generally, if you go over 1kV per cm this happens",
+					clueCryptic: "Generally, if you go over 1kV per cm this happens",
 					answer: "arc",
 					position: 2,
 					orientation: "down",
@@ -86,7 +96,8 @@
 					starty: 1
 				},
 				{
-					clue: "Control system strategy that tries to replicate the human through process (abbr.)",
+					clueQuick: "Control system strategy that tries to replicate the human through process (abbr.)",
+					clueCryptic: "Control system strategy that tries to replicate the human through process (abbr.)",
 					answer: "ann",
 					position: 4,
 					orientation: "down",
@@ -94,7 +105,8 @@
 					starty: 1
 				},
 				{
-					clue: "Greek variable that usually describes rotor positon",
+					clueQuick: "Greek variable that usually describes rotor positon",
+					clueCryptic: "Greek variable that usually describes rotor positon",
 					answer: "theta",
 					position: 6,
 					orientation: "down",
@@ -102,7 +114,8 @@
 					starty: 3
 				},
 				{
-					clue: "Electromagnetic (abbr.)",
+					clueQuick: "Electromagnetic (abbr.)",
+					clueCryptic: "Electromagnetic (abbr.)",
 					answer: "em",
 					position: 7,
 					orientation: "down",
@@ -110,7 +123,8 @@
 					starty: 3
 				},
 				{
-					clue: "No. 13 across does this to a voltage",
+					clueQuick: "No. 13 across does this to a voltage",
+					clueCryptic: "No. 13 across does this to a voltage",
 					answer: "steps",
 					position: 9,
 					orientation: "down",
@@ -118,7 +132,8 @@
 					starty: 5
 				},
 				{
-					clue: "Emits a lout wailing sound",
+					clueQuick: "Emits a lout wailing sound",
+					clueCryptic: "Emits a lout wailing sound",
 					answer: "siren",
 					position: 11,
 					orientation: "down",
@@ -126,7 +141,8 @@
 					starty: 7
 				},
 				{
-					clue: "Information technology (abbr.)",
+					clueQuick: "Information technology (abbr.)",
+					clueCryptic: "Information technology (abbr.)",
 					answer: "it",
 					position: 12,
 					orientation: "down",
@@ -134,7 +150,8 @@
 					starty: 8
 				},
 				{
-					clue: "Asynchronous transfer mode (abbr.)",
+					clueQuick: "Asynchronous transfer mode (abbr.)",
+					clueCryptic: "Asynchronous transfer mode (abbr.)",
 					answer: "atm",
 					position: 14,
 					orientation: "down",
@@ -142,7 +159,8 @@
 					starty: 9
 				},
 				{
-					clue: "Offset current control (abbr.)",
+					clueQuick: "Offset current control (abbr.)",
+					clueCryptic: "Offset current control (abbr.)",
 					answer: "occ",
 					position: 15,
 					orientation: "down",

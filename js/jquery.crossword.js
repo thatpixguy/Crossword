@@ -38,12 +38,14 @@
 			
 			// append clues markup after puzzle wrapper div
 			// This should be moved into a configuration object
-			this.after('<div id="puzzle-clues"><h2>Across</h2><ol id="across"></ol><h2>Down</h2><ol id="down"></ol></div>');
+			this.after('<div id="puzzle-clues-cryptic"><h2>Across</h2><ol id="across"></ol><h2>Down</h2><ol id="down"></ol></div>');
+			this.after('<div id="puzzle-clues-quick"><h2>Across</h2><ol id="across"></ol><h2>Down</h2><ol id="down"></ol></div>');
 			
 			// initialize some variables
 			var tbl = ['<table id="puzzle">'],
 				puzzEl = this,
-				clues = $('#puzzle-clues'),
+				cluesCryptic = $('#puzzle-clues-cryptic'),
+				cluesQuick = $('#puzzle-clues-quick'),
 				clueLiEls,
 				coords,
 				entryCount = puzz.data.length,
@@ -147,7 +149,8 @@
 					
 					
 					// click/tab clues 'navigation' handler setup
-					clues.delegate('li', 'click', function(e) {
+
+					cluesCryptic.add(cluesQuick).delegate('li', 'click', function(e) {
 						mode = 'setting ui';
 						
 						if (!e.keyCode) {
@@ -167,7 +170,7 @@
 					puzInit.calcCoords();
 					
 					// Puzzle clues added to DOM in calcCoords(), so now immediately put mouse focus on first clue
-					clueLiEls = $('#puzzle-clues li');
+					clueLiEls = $('#puzzle-clues-cryptic li');
 					$('#' + currOri + ' li' ).eq(0).addClass('clues-active').focus();
 				
 					// DELETE FOR BG
@@ -196,7 +199,8 @@
 						}
 
 						// while we're in here, add clues to DOM!
-						$('#' + puzz.data[i].orientation).append('<li tabindex="1" data-position="' + i + '" value="' + puzz.data[i].position + '">' + puzz.data[i].clue + '</li>'); 
+						$('#puzzle-clues-cryptic #' + puzz.data[i].orientation).append('<li tabindex="1" data-position="' + i + '" value="' + puzz.data[i].position + '">' + puzz.data[i].clueCryptic + '</li>'); 
+						$('#puzzle-clues-quick #' + puzz.data[i].orientation).append('<li tabindex="1" data-position="' + i + '" value="' + puzz.data[i].position + '">' + puzz.data[i].clueQuick + '</li>'); 
 					}			  
 					
 					// Calculate rows/cols by finding max coords of each entry, then picking the highest
